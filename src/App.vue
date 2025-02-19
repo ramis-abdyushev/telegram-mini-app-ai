@@ -1,6 +1,6 @@
 <script setup>
 import ChatContainer from '@/components/ChatContainer.vue'
-import SelectModel from '@/components/SelectModel.vue'
+import SelectModel from '@/components/ModelSelect.vue'
 </script>
 
 <template>
@@ -14,8 +14,10 @@ import SelectModel from '@/components/SelectModel.vue'
 
 <style scoped>
 header {
-  height: 50px;
-  padding: 1rem;
+  display: flex;
+  align-items: center;
+  height: 3.5rem;
+  padding: 0.75rem;
 }
 
 main {

@@ -1,6 +1,6 @@
 <script setup>
-import ButtonApp from '@/components/ui/ButtonApp.vue'
-import TextareaApp from '@/components/ui/TextareaApp.vue'
+import ButtonApp from '@/components/ui/CustomButton.vue'
+import TextareaApp from '@/components/ui/CustomTextarea.vue'
 import { ref } from 'vue'
 import { useModelStore } from '@/stores/currentModel.js'
 import { useMessagesStore } from '@/stores/messages.js'

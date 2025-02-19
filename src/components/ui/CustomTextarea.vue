@@ -59,6 +59,7 @@ const handleKeyDown = (event) => {
 
 <style scoped>
 textarea {
+  color: var(--color-text);
   resize: none;
   background: none;
   border: none;
