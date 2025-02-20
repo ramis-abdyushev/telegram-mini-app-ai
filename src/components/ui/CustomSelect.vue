@@ -22,6 +22,9 @@ const selectedLabel = computed(
   () => options.find((option) => option.value === value)?.label || 'Не выбрано',
 )
 
+onMounted(() => document.addEventListener('click', clickOutside))
+onUnmounted(() => document.removeEventListener('click', clickOutside))
+
 const toggleSelect = () => {
   isOpen.value = !isOpen.value
 }
@@ -36,9 +39,6 @@ const clickOutside = (event) => {
     isOpen.value = false
   }
 }
-
-onMounted(() => document.addEventListener('click', clickOutside))
-onUnmounted(() => document.removeEventListener('click', clickOutside))
 </script>
 
 <template>

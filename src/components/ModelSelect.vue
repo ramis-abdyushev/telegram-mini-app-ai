@@ -1,6 +1,6 @@
 <script setup>
 import SelectApp from '@/components/ui/CustomSelect.vue'
-import { useModelStore } from '@/stores/currentModel.js'
+import { useModelStore } from '@/stores/model.js'
 import { storeToRefs } from 'pinia'
 
 const models = [
