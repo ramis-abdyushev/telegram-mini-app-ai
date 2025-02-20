@@ -43,11 +43,11 @@ const keydownHandler = (event) => {
   }
 }
 
-const focusTextarea = () => {
+const focus = () => {
   textareaRef.value.focus()
 }
 
-defineExpose({ focusTextarea })
+defineExpose({ focus })
 </script>
 
 <template>

@@ -42,16 +42,21 @@ const clickOutside = (event) => {
 </script>
 
 <template>
-  <div class="select">
-    <button ref="buttonRef" class="button" :class="{ 'is-open': isOpen }" @click="toggleSelect">
+  <div class="custom-select">
+    <button
+      ref="buttonRef"
+      class="select-button"
+      :class="{ 'is-open': isOpen }"
+      @click="toggleSelect"
+    >
       <span>{{ selectedLabel }}</span>
       <IconSelectCaret />
     </button>
-    <ul v-show="isOpen" class="options" @click.stop>
+    <ul v-show="isOpen" class="select-options" @click.stop>
       <li
         v-for="option in options"
         :key="option.value"
-        class="option"
+        class="select-option"
         @click.stop="selectOption(option)"
       >
         {{ option.label }}
@@ -61,11 +66,11 @@ const clickOutside = (event) => {
 </template>
 
 <style scoped>
-.select {
+.custom-select {
   position: relative;
 }
 
-.button {
+.select-button {
   display: inline-flex;
   align-items: center;
   padding: 5px 10px;
@@ -78,18 +83,18 @@ const clickOutside = (event) => {
   cursor: pointer;
 }
 
-.button:hover,
-.button.is-open {
+.select-button:hover,
+.select-button.is-open {
   background-color: var(--color-background-soft);
 }
 
-.button > svg {
+.select-button > svg {
   width: 18px;
   height: 18px;
   margin-left: 4px;
 }
 
-.options {
+.select-options {
   position: absolute;
   margin-top: 7px;
   padding: 7px;
@@ -99,13 +104,13 @@ const clickOutside = (event) => {
   list-style-type: none;
 }
 
-.option {
+.select-option {
   cursor: pointer;
   padding: 5px 10px;
   border-radius: 6px;
 }
 
-.option:hover {
+.select-option:hover {
   background-color: var(--color-background-mute);
 }
 </style>

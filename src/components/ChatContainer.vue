@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import InputBox from '@/components/InputBox.vue'
+import InputBox from '@/components/InputWrap.vue'
 import MessagesBox from '@/components/MessagesBox.vue'
 
 const messagesBoxRef = ref(null)
@@ -12,5 +12,5 @@ const handleSendMessage = () => {
 
 <template>
   <MessagesBox ref="messagesBoxRef" />
-  <InputBox @send-message="handleSendMessage" />
+  <InputBox @add-message="handleSendMessage" />
 </template>

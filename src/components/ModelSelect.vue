@@ -1,5 +1,5 @@
 <script setup>
-import SelectApp from '@/components/ui/CustomSelect.vue'
+import CustomSelect from '@/components/ui/CustomSelect.vue'
 import { useModelStore } from '@/stores/model.js'
 import { storeToRefs } from 'pinia'
 
@@ -15,5 +15,5 @@ const { currentModel } = storeToRefs(modelStore)
 </script>
 
 <template>
-  <SelectApp v-model:value="currentModel" :options="models" />
+  <CustomSelect v-model:value="currentModel" :options="models" />
 </template>

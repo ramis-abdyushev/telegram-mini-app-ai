@@ -46,6 +46,7 @@ defineExpose({ scrollMessages })
 
 .message {
   margin: 10px 0;
+  white-space: pre-wrap;
 }
 
 .user {
@@ -56,9 +57,5 @@ defineExpose({ scrollMessages })
   word-wrap: break-word;
   align-self: flex-end;
   word-break: break-word; /* Разбиваем длинные строки без пробела */
-}
-
-.user > div {
-  white-space: pre-wrap;
 }
 </style>
