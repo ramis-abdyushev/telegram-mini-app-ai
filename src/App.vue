@@ -16,7 +16,7 @@ import SelectModel from '@/components/ModelSelect.vue'
 header {
   display: flex;
   align-items: center;
-  height: 3.5rem;
+  height: 3rem;
   padding: 0.75rem;
 }
 
