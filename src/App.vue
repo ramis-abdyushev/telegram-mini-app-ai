@@ -14,14 +14,14 @@ import SelectModel from '@/components/ModelSelect.vue'
 
 <style scoped>
 header {
+  height: 3.5rem;
   display: flex;
   align-items: center;
-  height: 3.5rem;
   padding: 0.75rem;
 }
 
 main {
-  flex: 1;
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
   overflow: hidden;

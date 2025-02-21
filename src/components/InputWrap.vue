@@ -14,7 +14,7 @@ const messagesStore = useMessagesStore()
 const modelStore = useModelStore()
 
 const inputValue = ref('')
-const state = ref('question')
+const messageState = ref('waiting')
 
 const textareaRef = ref(null)
 
@@ -23,7 +23,7 @@ onMounted(() => textareaRef.value.focus())
 const sendMessage = async () => {
   const userInput = inputValue.value.trim()
 
-  if (!userInput || ['pending', 'response'].includes(state.value)) {
+  if (!userInput || ['pending', 'streaming'].includes(messageState.value)) {
     return
   }
 
@@ -31,7 +31,7 @@ const sendMessage = async () => {
   addMessage(userMessage)
 
   inputValue.value = ''
-  state.value = 'pending'
+  messageState.value = 'pending'
 
   await new Promise((resolve) => setTimeout(() => resolve(), 1000))
 
@@ -40,7 +40,7 @@ const sendMessage = async () => {
 
   try {
     const aiMessage = await new Promise((resolve) => {
-      state.value = 'response'
+      messageState.value = 'streaming'
 
       return setTimeout(
         () =>
@@ -58,7 +58,7 @@ const sendMessage = async () => {
     addMessage({ role: 'assistant', content: 'Ошибка запроса' })
   }
 
-  state.value = 'question'
+  messageState.value = 'waiting'
 }
 
 const addMessage = (message) => {
@@ -80,20 +80,21 @@ const stopSendMessage = () => {
       placeholder="Введите сообщение..."
       @keydown-send="sendMessage"
     />
-    <IconButton
-      v-if="state === 'question'"
-      class="input-button"
-      :disabled="!inputValue.trim()"
-      @click="sendMessage"
-    >
-      <IconArrow />
-    </IconButton>
-    <IconButton v-else-if="state === 'pending'" class="input-button" disabled>
-      <IconSpinner />
-    </IconButton>
-    <IconButton v-else class="input-button" @click="stopSendMessage">
-      <IconSquare />
-    </IconButton>
+    <div class="input-button">
+      <IconButton
+        v-if="messageState === 'waiting'"
+        :disabled="!inputValue.trim()"
+        @click="sendMessage"
+      >
+        <IconArrow />
+      </IconButton>
+      <IconButton v-else-if="messageState === 'pending'" disabled>
+        <IconSpinner />
+      </IconButton>
+      <IconButton v-else @click="stopSendMessage">
+        <IconSquare />
+      </IconButton>
+    </div>
   </div>
 </template>
 
@@ -101,11 +102,11 @@ const stopSendMessage = () => {
 .input-wrap {
   width: 776px;
   margin: auto;
-  border-radius: 24px;
-  background-color: #303030;
   padding: 12px;
   display: flex;
   align-items: center;
+  border-radius: 24px;
+  background-color: var(--color-background-mute);
   cursor: text;
 }
 

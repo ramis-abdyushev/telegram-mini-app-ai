@@ -1,16 +1,16 @@
 <script setup>
 import { ref } from 'vue'
-import InputBox from '@/components/InputWrap.vue'
-import MessagesBox from '@/components/MessagesBox.vue'
+import InputWrap from '@/components/InputWrap.vue'
+import MessagesWrap from '@/components/MessagesWrap.vue'
 
-const messagesBoxRef = ref(null)
+const messagesWrapRef = ref(null)
 
-const handleSendMessage = () => {
-  messagesBoxRef.value.scrollMessages()
+const scrollMessages = () => {
+  messagesWrapRef.value.scrollMessages()
 }
 </script>
 
 <template>
-  <MessagesBox ref="messagesBoxRef" />
-  <InputBox @add-message="handleSendMessage" />
+  <MessagesWrap ref="messagesWrapRef" />
+  <InputWrap @add-message="scrollMessages" />
 </template>
