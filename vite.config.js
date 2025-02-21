@@ -14,6 +14,6 @@ export default defineConfig({
   server: {
     host: true, // Разрешает доступ извне
     strictPort: true, // Гарантирует запуск на указанном порту
-    allowedHosts: ['telegram-mini-app-ai-production.up.railway.app'], // Разрешённый домен
+    allowedHosts: ['mini-app-ai.up.railway.app'], // Разрешённый домен
   }
 })
