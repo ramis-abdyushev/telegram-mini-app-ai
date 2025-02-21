@@ -5,6 +5,8 @@ import { onMounted, ref } from 'vue'
 import { useModelStore } from '@/stores/model.js'
 import { useMessagesStore } from '@/stores/messages.js'
 import IconArrow from '@/components/icons/IconArrow.vue'
+import IconSquare from '@/components/icons/IconSquare.vue'
+import IconSpinner from '@/components/icons/IconSpinner.vue'
 
 const emit = defineEmits(['add-message'])
 
@@ -12,7 +14,7 @@ const messagesStore = useMessagesStore()
 const modelStore = useModelStore()
 
 const inputValue = ref('')
-const loading = ref(false)
+const state = ref('question')
 
 const textareaRef = ref(null)
 
@@ -21,7 +23,7 @@ onMounted(() => textareaRef.value.focus())
 const sendMessage = async () => {
   const userInput = inputValue.value.trim()
 
-  if (!userInput) {
+  if (!userInput || ['pending', 'response'].includes(state.value)) {
     return
   }
 
@@ -29,22 +31,26 @@ const sendMessage = async () => {
   addMessage(userMessage)
 
   inputValue.value = ''
-  loading.value = true
+  state.value = 'pending'
+
+  await new Promise((resolve) => setTimeout(() => resolve(), 1000))
 
   const selectedModel = modelStore.currentModel
   console.log(selectedModel)
 
   try {
-    const aiMessage = await new Promise((resolve) =>
-      setTimeout(
+    const aiMessage = await new Promise((resolve) => {
+      state.value = 'response'
+
+      return setTimeout(
         () =>
           resolve({
             role: 'assistant',
             content: userInput,
           }),
         1000,
-      ),
-    )
+      )
+    })
 
     addMessage(aiMessage)
   } catch (error) {
@@ -52,12 +58,16 @@ const sendMessage = async () => {
     addMessage({ role: 'assistant', content: 'Ошибка запроса' })
   }
 
-  loading.value = false
+  state.value = 'question'
 }
 
 const addMessage = (message) => {
   messagesStore.addMessage(message)
   emit('add-message')
+}
+
+const stopSendMessage = () => {
+  console.log(1)
 }
 </script>
 
@@ -70,8 +80,19 @@ const addMessage = (message) => {
       placeholder="Введите сообщение..."
       @keydown-send="sendMessage"
     />
-    <IconButton class="input-button" :disabled="loading" @click="sendMessage">
+    <IconButton
+      v-if="state === 'question'"
+      class="input-button"
+      :disabled="!inputValue.trim()"
+      @click="sendMessage"
+    >
       <IconArrow />
+    </IconButton>
+    <IconButton v-else-if="state === 'pending'" class="input-button" disabled>
+      <IconSpinner />
+    </IconButton>
+    <IconButton v-else class="input-button" @click="stopSendMessage">
+      <IconSquare />
     </IconButton>
   </div>
 </template>

@@ -21,4 +21,8 @@ button {
 button:hover {
   background-color: var(--color-text);
 }
+
+button:disabled {
+  background-color: var(--color-disabled);
+}
 </style>
