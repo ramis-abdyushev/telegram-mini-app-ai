@@ -31,18 +31,19 @@ defineExpose({ scrollMessages })
 .messages-wrap {
   min-height: 0;
   flex-grow: 1;
+  padding-bottom: 2rem;
   overflow-y: auto;
 }
 
 .messages {
-  width: 736px;
-  margin: auto;
   display: flex;
   flex-direction: column;
+  margin: auto;
+  padding: 0 1.5rem;
 }
 
 .message {
-  margin: 10px 0;
+  margin: 18px 1rem;
   overflow-wrap: break-word;
   white-space: pre-wrap;
 }
@@ -52,18 +53,19 @@ defineExpose({ scrollMessages })
   align-self: flex-end;
   padding: 0.625rem 1.25rem;
   border-radius: 1.5rem;
+  line-height: 1.5;
   background-color: var(--color-background-mute);
 }
 
-@media (max-width: 1279px) {
+@media (min-width: 1024px) {
   .messages {
-    width: 608px;
+    max-width: 40rem;
   }
 }
 
-@media (max-width: 1023px) {
+@media (min-width: 1280px) {
   .messages {
-    width: 100%;
+    max-width: 48rem;
   }
 }
 </style>

@@ -6,8 +6,8 @@
 
 <style scoped>
 button {
-  height: 36px;
-  width: 36px;
+  height: 2.25rem;
+  width: 2.25rem;
   display: flex;
   align-items: center;
   justify-content: center;

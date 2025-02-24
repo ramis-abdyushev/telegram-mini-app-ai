@@ -63,14 +63,14 @@ defineExpose({ focus })
 
 <style scoped>
 textarea {
-  max-height: 230px;
+  max-height: 25dvh;
   flex-grow: 1;
   border: none;
-  border-radius: 5px;
   outline: none;
   resize: none;
   background: none;
   font: inherit;
+  line-height: 1.5;
   color: var(--color-text);
 }
 </style>

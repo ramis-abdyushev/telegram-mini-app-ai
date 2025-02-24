@@ -73,61 +73,72 @@ const stopSendMessage = () => {
 
 <template>
   <div class="input-wrap" @click="textareaRef.focus">
-    <CustomTextarea
-      ref="textareaRef"
-      class="input-textarea"
-      v-model:value="inputValue"
-      placeholder="Введите сообщение..."
-      @keydown-send="sendMessage"
-    />
-    <div class="input-button">
-      <IconButton
-        v-if="messageState === 'waiting'"
-        :disabled="!inputValue.trim()"
-        @click="sendMessage"
-      >
-        <IconArrow />
-      </IconButton>
-      <IconButton v-else-if="messageState === 'pending'" disabled>
-        <IconSpinner />
-      </IconButton>
-      <IconButton v-else @click="stopSendMessage">
-        <IconSquare />
-      </IconButton>
+    <div class="input-box">
+      <CustomTextarea
+        ref="textareaRef"
+        class="input-textarea"
+        v-model:value="inputValue"
+        placeholder="Введите сообщение..."
+        @keydown-send="sendMessage"
+      />
+      <div class="input-button">
+        <IconButton
+          v-if="messageState === 'waiting'"
+          :disabled="!inputValue.trim()"
+          @click="sendMessage"
+        >
+          <IconArrow />
+        </IconButton>
+        <IconButton v-else-if="messageState === 'pending'" disabled>
+          <IconSpinner />
+        </IconButton>
+        <IconButton v-else @click="stopSendMessage">
+          <IconSquare />
+        </IconButton>
+      </div>
     </div>
-  </div>
+    </div>
 </template>
 
 <style scoped>
 .input-wrap {
-  width: 776px;
+  padding: 0 .75rem 1rem .75rem;
+}
+
+.input-box {
   margin: auto;
-  padding: 12px;
+  padding: .75rem;
   display: flex;
   align-items: center;
-  border-radius: 24px;
+  border-radius: 1.5rem;
   background-color: var(--color-background-mute);
   cursor: text;
 }
 
 .input-textarea {
-  margin-left: 4px;
+  margin-left: .25rem;
 }
 
 .input-button {
   align-self: end;
-  margin-left: 12px;
+  margin-left: .75rem;
 }
 
-@media (max-width: 1279px) {
+@media (min-width: 768px) {
   .input-wrap {
-    width: 640px;
+    padding: 0 1.25rem 1rem 1.25rem;
   }
 }
 
-@media (max-width: 1023px) {
-  .input-wrap {
-    width: 100%;
+@media (min-width: 1024px) {
+  .input-box {
+    max-width: 40rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .input-box {
+    max-width: 48rem;
   }
 }
 </style>

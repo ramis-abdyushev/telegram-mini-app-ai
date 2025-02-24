@@ -25,6 +25,5 @@ main {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  padding-bottom: 1rem;
 }
 </style>
