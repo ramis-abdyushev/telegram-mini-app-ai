@@ -37,9 +37,6 @@ const inputHandler = (event) => {
 
 const keydownHandler = (event) => {
   if (event.key === 'Enter') {
-    setTimeout(() => console.log(event), 10000)
-    setTimeout(() => console.log(navigator.userAgent), 10000)
-
     if (event.shiftKey || isMobile) {
       return
     }
