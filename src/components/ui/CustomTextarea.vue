@@ -15,6 +15,8 @@ const emit = defineEmits(['update:value', 'keydown-send'])
 
 const textareaRef = ref(null)
 
+const isMobile = /Mobi|Android|iPhone|iPad|iPod|Windows Phone/i.test(navigator.userAgent);
+
 watch(
   () => value,
   () => resize(),
@@ -36,8 +38,9 @@ const inputHandler = (event) => {
 const keydownHandler = (event) => {
   if (event.key === 'Enter') {
     setTimeout(() => console.log(event), 10000)
+    setTimeout(() => console.log(navigator.userAgent), 10000)
 
-    if (event.shiftKey) {
+    if (event.shiftKey || isMobile) {
       return
     }
     event.preventDefault()
