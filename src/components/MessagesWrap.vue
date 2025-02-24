@@ -54,4 +54,16 @@ defineExpose({ scrollMessages })
   border-radius: 1.5rem;
   background-color: var(--color-background-mute);
 }
+
+@media (max-width: 1279px) {
+  .messages {
+    width: 608px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .messages {
+    width: 100%;
+  }
+}
 </style>

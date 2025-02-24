@@ -118,4 +118,16 @@ const stopSendMessage = () => {
   align-self: end;
   margin-left: 12px;
 }
+
+@media (max-width: 1279px) {
+  .input-wrap {
+    width: 640px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .input-wrap {
+    width: 100%;
+  }
+}
 </style>
