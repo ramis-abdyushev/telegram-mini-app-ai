@@ -35,7 +35,7 @@ const inputHandler = (event) => {
 
 const keydownHandler = (event) => {
   if (event.key === 'Enter') {
-    console.log(event)
+    setTimeout(() => console.log(event), 10000)
 
     if (event.shiftKey) {
       return
