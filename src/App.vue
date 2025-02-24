@@ -17,6 +17,7 @@ header {
   height: 3.5rem;
   display: flex;
   align-items: center;
+  justify-content: center;
   padding: 0.75rem;
 }
 
@@ -25,5 +26,11 @@ main {
   display: flex;
   flex-direction: column;
   overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  header {
+    justify-content: start;
+  }
 }
 </style>
