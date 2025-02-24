@@ -35,6 +35,8 @@ const inputHandler = (event) => {
 
 const keydownHandler = (event) => {
   if (event.key === 'Enter') {
+    console.log(event)
+
     if (event.shiftKey) {
       return
     }
