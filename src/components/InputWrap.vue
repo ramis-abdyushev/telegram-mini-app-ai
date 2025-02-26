@@ -2,16 +2,14 @@
 import IconButton from '@/components/ui/IconButton.vue'
 import CustomTextarea from '@/components/ui/CustomTextarea.vue'
 import { onMounted, ref } from 'vue'
-import { useModelStore } from '@/stores/model.js'
 import { useMessagesStore } from '@/stores/messages.js'
 import IconArrow from '@/components/icons/IconArrow.vue'
 import IconSquare from '@/components/icons/IconSquare.vue'
 import IconSpinner from '@/components/icons/IconSpinner.vue'
-
-const emit = defineEmits(['add-message'])
+import { sendMessageOllama } from '@/ollama.js'
 
 const messagesStore = useMessagesStore()
-const modelStore = useModelStore()
+const { addMessage } = messagesStore
 
 const inputValue = ref('')
 const messageState = ref('waiting')
@@ -35,35 +33,27 @@ const sendMessage = async () => {
 
   await new Promise((resolve) => setTimeout(() => resolve(), 1000))
 
-  const selectedModel = modelStore.currentModel
-  console.log(selectedModel)
-
   try {
-    const aiMessage = await new Promise((resolve) => {
-      messageState.value = 'streaming'
+    await sendMessageOllama();
 
-      return setTimeout(
-        () =>
-          resolve({
-            role: 'assistant',
-            content: userInput,
-          }),
-        1000,
-      )
-    })
-
-    addMessage(aiMessage)
+    // const aiMessage = await new Promise((resolve) => {
+    //   messageState.value = 'streaming'
+    //
+    //   return setTimeout(
+    //     () =>
+    //       resolve({
+    //         role: 'assistant',
+    //         content: userInput,
+    //       }),
+    //     1000,
+    //   )
+    // })
   } catch (error) {
     console.error('Ошибка запроса:', error)
     addMessage({ role: 'assistant', content: 'Ошибка запроса' })
   }
 
   messageState.value = 'waiting'
-}
-
-const addMessage = (message) => {
-  messagesStore.addMessage(message)
-  emit('add-message')
 }
 
 const stopSendMessage = () => {

@@ -1,12 +1,18 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { useMessagesStore } from '@/stores/messages.js'
-import { nextTick, ref } from 'vue'
+import { nextTick, ref, watch } from 'vue'
 
 const messagesStore = useMessagesStore()
 const { messages } = storeToRefs(messagesStore)
 
 const messagesRef = ref(null)
+
+watch(
+  () => messages,
+  () => scrollMessages(),
+  { deep: true },
+)
 
 const scrollMessages = () => {
   nextTick(() => {

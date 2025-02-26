@@ -4,10 +4,8 @@ import { useModelStore } from '@/stores/model.js'
 import { storeToRefs } from 'pinia'
 
 const models = [
-  { label: 'Model 1', value: 'model-1' },
-  { label: 'Model 2', value: 'model-2' },
-  { label: 'Model 3', value: 'model-3' },
-  { label: 'Model 4', value: 'model-4' },
+  { label: 'deepseek-r1', value: 'deepseek-r1' },
+  { label: 'llama3.2', value: 'llama3.2' },
 ]
 
 const modelStore = useModelStore()
