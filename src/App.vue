@@ -4,8 +4,6 @@ import SelectModel from '@/components/ModelSelect.vue'
 
 const cloudStorage = window.Telegram.WebApp.CloudStorage
 
-console.log(cloudStorage)
-
 const qwe1 = cloudStorage.getKeys((err, keys) => {
   console.log('err1', err)
   console.log('keys1', keys)
@@ -22,6 +20,9 @@ const qwe2 = cloudStorage.getKeys((err, keys) => {
 })
 
 console.log('qwe2', qwe2)
+
+console.log('R1', cloudStorage.getItem('chat'))
+console.log('R2', cloudStorage.getItem('chat1'))
 </script>
 
 <template>
