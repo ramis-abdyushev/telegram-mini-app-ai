@@ -1,6 +1,27 @@
 <script setup>
 import ChatContainer from '@/components/ChatContainer.vue'
 import SelectModel from '@/components/ModelSelect.vue'
+
+const cloudStorage = window.Telegram.WebApp.CloudStorage
+
+console.log(cloudStorage)
+
+const qwe1 = cloudStorage.getKeys((err, keys) => {
+  console.log('err1', err)
+  console.log('keys1', keys)
+})
+
+console.log('qwe1', qwe1)
+
+cloudStorage.setItem('chat', 'Ура')
+cloudStorage.setItem('chat1', [{ asd: 'Ура' }, { sss: 'Да', ff: 123 }])
+
+const qwe2 = cloudStorage.getKeys((err, keys) => {
+  console.log('err2', err)
+  console.log('keys2', keys)
+})
+
+console.log('qwe2', qwe2)
 </script>
 
 <template>
