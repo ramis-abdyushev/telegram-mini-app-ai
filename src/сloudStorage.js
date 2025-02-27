@@ -1,60 +1,107 @@
 const maxLengthChunk = 30
 
+const cloudStorage = window.Telegram.WebApp.CloudStorage
+
+function getKeys() {
+  return new Promise((resolve, reject) => {
+    cloudStorage.getKeys((err, value) => {
+      if (err) {
+        reject(err); // Если ошибка, отклоняем промис
+      } else {
+        resolve(value); // Если всё ок, разрешаем промис с ключами
+      }
+    });
+  });
+}
+
+function removeItems(keys) {
+  return new Promise((resolve, reject) => {
+    cloudStorage.removeItems(keys, (err, value) => {
+      if (err) {
+        reject(err); // Если ошибка, отклоняем промис
+      } else {
+        resolve(value); // Если всё ок, разрешаем промис с ключами
+      }
+    });
+  });
+}
+
+function getItem(key) {
+  return new Promise((resolve, reject) => {
+    cloudStorage.getItem(key, (err, value) => {
+      if (err) {
+        reject(err); // Если ошибка, отклоняем промис
+      } else {
+        resolve(value); // Если всё ок, разрешаем промис с ключами
+      }
+    });
+  });
+}
+
+function getItems(keys) {
+  return new Promise((resolve, reject) => {
+    cloudStorage.getItems(keys, (err, value) => {
+      if (err) {
+        reject(err); // Если ошибка, отклоняем промис
+      } else {
+        resolve(value); // Если всё ок, разрешаем промис с ключами
+      }
+    });
+  });
+}
+
+function setItem(key, value) {
+  return new Promise((resolve, reject) => {
+    cloudStorage.setItem(key, value, (err, value) => {
+      if (err) {
+        reject(err); // Если ошибка, отклоняем промис
+      } else {
+        resolve(value); // Если всё ок, разрешаем промис с ключами
+      }
+    });
+  });
+}
+
 export async function addMessageToChat(message) {
-  const cloudStorage = window.Telegram.WebApp.CloudStorage
-
   // Строка, которую нужно сохранить
-  // const messageStr = JSON.stringify(message) + ','
+  const messageStr = JSON.stringify(message) + ','
 
-  cloudStorage.getKeys((err, value) => {
-    console.log('R1', value)
+  const allKeys = await getKeys();
+  await removeItems(allKeys)
 
-    cloudStorage.removeItems(value, (err, value) => {
-      console.log('R2', value)
+  let newChat = false
 
-      cloudStorage.getKeys((err, value) => {
-        console.log('R3', value)
-      })
-    })
-  })
+  let countStr = await getItem('chat_count')
 
-  cloudStorage.getItem('chat_count', (err, value) => {
-    console.log('R4', err)
-    console.log('R5', value)
-  })
+  if (!countStr) {
+    newChat = true
+  }
 
-  // Получаем количество сохранённых частей чата
-  // const countStr = await cloudStorage.getItem('chat_count')
-  //
-  // let newChat = false
-  //
-  // if (!countStr) {
-  //   newChat = true
-  // }
-  //
-  // let chatCount = newChat ? 1 : Number(countStr)
-  //
-  // const lastChunkStr = newChat ? '' : await cloudStorage.getItem(`chat_${chatCount}`)
-  //
-  // console.log('asd', cloudStorage.getItem(`chat_${chatCount}`))
-  // console.log('zxc', await cloudStorage.getItem(`chat_${chatCount}`))
-  //
-  // console.log('qwe', lastChunkStr)
-  //
-  // const availableLength = maxLengthChunk - lastChunkStr.length
-  //
-  // const addedChunks = splitString(messageStr, availableLength)
-  //
-  // addedChunks.forEach((value, index) => {
-  //   if (index === 0) {
-  //     value = lastChunkStr + value
-  //   }
-  //
-  //   cloudStorage.setItem(`chat_${chatCount}`, value)
-  //   cloudStorage.setItem(`chat_count`, String(chatCount))
-  //
-  //   chatCount++
-  // })
+  let chatCount = newChat ? 1 : Number(countStr)
+
+  const lastChunkStr = newChat ? '' : await getItem(`chat_${chatCount}`)
+
+  const availableLength = maxLengthChunk - lastChunkStr.length
+
+  const addedChunks = splitString(messageStr, availableLength)
+
+  for (let index = 0; index < addedChunks.length; index++) {
+    let value = addedChunks[index];
+
+    if (index === 0) {
+      value = lastChunkStr + value
+    }
+
+    await setItem(`chat_${chatCount}`, value)
+    await setItem(`chat_count`, String(chatCount))
+
+    chatCount++
+  }
+
+  const allKeysA = await getKeys();
+
+  console.log('R1', allKeysA)
+  console.log('R2', await getItems(allKeysA))
 }
 
 function splitString(string, firstChunkLength) {
