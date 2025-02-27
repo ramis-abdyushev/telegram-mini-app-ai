@@ -153,7 +153,7 @@ export async function loadChat() {
     }
   }
 
-  console.log('RRR1', countStr)
+  console.log('RRR1', fullChat)
 
   fullChat = `[${fullChat}]`
 
