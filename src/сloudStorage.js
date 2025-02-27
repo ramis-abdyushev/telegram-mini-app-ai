@@ -153,6 +153,8 @@ export async function loadChat() {
     }
   }
 
+  console.log('RRR1', countStr)
+
   fullChat = `[${fullChat}]`
 
   const messagesStore = useMessagesStore()
