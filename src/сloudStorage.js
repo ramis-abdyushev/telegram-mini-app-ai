@@ -135,9 +135,13 @@ function splitString(string, firstChunkLength) {
 export async function loadChat() {
   const countStr = await cloudStorage.getItem('chat_count');
 
+  console.log('RRR', countStr)
+
   if (!countStr) {
     return
   }
+
+  console.log('RRR2', countStr)
 
   let count = Number(countStr);
   let fullChat = '';
