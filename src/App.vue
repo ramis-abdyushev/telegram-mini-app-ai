@@ -4,25 +4,23 @@ import SelectModel from '@/components/ModelSelect.vue'
 
 const cloudStorage = window.Telegram.WebApp.CloudStorage
 
-const qwe1 = cloudStorage.getKeys((err, keys) => {
-  console.log('err1', err)
-  console.log('keys1', keys)
-})
-
-console.log('qwe1', qwe1)
-
 cloudStorage.setItem('chat', 'Ура')
 cloudStorage.setItem('chat1', [{ asd: 'Ура' }, { sss: 'Да', ff: 123 }])
 
-const qwe2 = cloudStorage.getKeys((err, keys) => {
-  console.log('err2', err)
-  console.log('keys2', keys)
+cloudStorage.getKeys((err, keys) => {
+  console.log('err', err)
+  console.log('keys', keys)
 })
 
-console.log('qwe2', qwe2)
+cloudStorage.getItem('chat', (err, value) => {
+  console.log('err1', err)
+  console.log('value1', value)
+})
 
-console.log('R1', cloudStorage.getItem('chat'))
-console.log('R2', cloudStorage.getItem('chat1'))
+cloudStorage.getItem('chat1', (err, value) => {
+  console.log('err2', err)
+  console.log('value2', value)
+})
 </script>
 
 <template>
