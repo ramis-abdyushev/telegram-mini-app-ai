@@ -3,7 +3,8 @@ import { useMessagesStore } from '@/stores/messages.js'
 import { Ollama } from 'ollama/browser'
 import { addMessageToChat } from '@/сloudStorage.js'
 
-const ollama = new Ollama({ host: 'https://ollama-chat-ai.serveo.net' })
+// const ollama = new Ollama({ host: 'https://ollama-chat-ai.serveo.net' })
+const ollama = new Ollama({ host: 'https://5f704846e4c7c0.lhr.life/' })
 
 export const sendMessageOllama = async () => {
   const modelStore = useModelStore()
