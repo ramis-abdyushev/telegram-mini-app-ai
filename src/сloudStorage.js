@@ -2,13 +2,12 @@ const maxLengthChunk = 30;
 
 export async function addMessageToChat(message) {
   const cloudStorage = window.Telegram.WebApp.CloudStorage
-  // const cloudStorage = window.localStorage
 
   // Строка, которую нужно сохранить
   const messageStr = JSON.stringify(message) + ',';
 
   // Получаем количество сохранённых частей чата
-  const countStr = cloudStorage.getItem('chat_count');
+  const countStr = await cloudStorage.getItem('chat_count');
 
   let newChat = false;
 
@@ -18,7 +17,7 @@ export async function addMessageToChat(message) {
 
   let chatCount = newChat ? 1 : Number(countStr);
 
-  const lastChunkStr = newChat ? '' : cloudStorage.getItem(`chat_${chatCount}`);
+  const lastChunkStr = newChat ? '' : await cloudStorage.getItem(`chat_${chatCount}`);
 
   const availableLength = maxLengthChunk - lastChunkStr.length;
 
