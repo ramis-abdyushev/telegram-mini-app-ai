@@ -100,7 +100,15 @@ export async function addMessageToChat(message) {
       value = lastChunkStr + value
     }
 
-    await setItem(`chat_${chatCount}`, value)
+    try {
+      await setItem(`chat_${chatCount}`, value)
+    } catch (e) {
+      console.error(e)
+      console.log(value)
+
+      throw e
+    }
+
     await setItem(`chat_count`, String(chatCount))
 
     chatCount++
