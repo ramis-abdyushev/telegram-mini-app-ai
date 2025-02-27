@@ -102,6 +102,7 @@ const clickOutside = (event) => {
   border-radius: 1rem;
   background-color: var(--color-background-soft);
   list-style-type: none;
+  white-space: nowrap;
 }
 
 .select-option {

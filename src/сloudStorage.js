@@ -65,6 +65,8 @@ function setItem(key, value) {
 }
 
 export async function cleanChats() {
+  const messagesStore = useMessagesStore()
+  messagesStore.setMessages([])
   const allKeys = await getKeys();
   await removeItems(allKeys)
 }

@@ -1,17 +1,13 @@
 <script setup>
 import ChatContainer from '@/components/ChatContainer.vue'
 import SelectModel from '@/components/ModelSelect.vue'
-import { cleanChats } from '@/сloudStorage.js'
-
-const clean = () => {
-  cleanChats()
-}
+import DeleteButton from '@/components/DeleteButton.vue'
 </script>
 
 <template>
   <header>
     <SelectModel />
-    <button @click="clean">Чистка</button>
+    <DeleteButton />
   </header>
   <main>
     <ChatContainer />
@@ -23,7 +19,7 @@ header {
   height: 3.5rem;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   padding: 0.75rem;
 }
 
@@ -32,11 +28,5 @@ main {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-}
-
-@media (min-width: 768px) {
-  header {
-    justify-content: start;
-  }
 }
 </style>
