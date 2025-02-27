@@ -62,12 +62,14 @@ function setItem(key, value) {
   });
 }
 
+export async function cleanChats() {
+  const allKeys = await getKeys();
+  await removeItems(allKeys)
+}
+
 export async function addMessageToChat(message) {
   // Строка, которую нужно сохранить
   const messageStr = JSON.stringify(message) + ','
-
-  const allKeys = await getKeys();
-  await removeItems(allKeys)
 
   let newChat = false
 

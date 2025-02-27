@@ -1,11 +1,17 @@
 <script setup>
 import ChatContainer from '@/components/ChatContainer.vue'
 import SelectModel from '@/components/ModelSelect.vue'
+import { cleanChats } from '@/сloudStorage.js'
+
+const clean = () => {
+  cleanChats()
+}
 </script>
 
 <template>
   <header>
     <SelectModel />
+    <button @click="clean">Чистка</button>
   </header>
   <main>
     <ChatContainer />
