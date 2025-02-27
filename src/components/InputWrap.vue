@@ -28,7 +28,7 @@ const sendMessage = async () => {
 
   const userMessage = { role: 'user', content: userInput }
   addMessage(userMessage)
-  addMessageToChat(userMessage)
+  await addMessageToChat(userMessage)
 
   inputValue.value = ''
   messageState.value = 'pending'

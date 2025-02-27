@@ -21,7 +21,7 @@ export const sendMessageOllama = async () => {
   for await (const part of response) {
     messagesStore.updateLastAssistantMessage(part.message.content)
     if (part.done) {
-      addMessageToChat(messagesStore.messages[messagesStore.messages.length - 1])
+      await addMessageToChat(messagesStore.messages[messagesStore.messages.length - 1])
     }
   }
 }
