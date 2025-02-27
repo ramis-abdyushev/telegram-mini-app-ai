@@ -7,6 +7,7 @@ import IconArrow from '@/components/icons/IconArrow.vue'
 import IconSquare from '@/components/icons/IconSquare.vue'
 import IconSpinner from '@/components/icons/IconSpinner.vue'
 import { sendMessageOllama } from '@/ollama.js'
+import { addMessageToChat } from '@/сloudStorage.js'
 
 const messagesStore = useMessagesStore()
 const { addMessage } = messagesStore
@@ -27,6 +28,7 @@ const sendMessage = async () => {
 
   const userMessage = { role: 'user', content: userInput }
   addMessage(userMessage)
+  addMessageToChat(userMessage)
 
   inputValue.value = ''
   messageState.value = 'pending'
