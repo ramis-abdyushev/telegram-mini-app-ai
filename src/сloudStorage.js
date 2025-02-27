@@ -18,9 +18,10 @@ export async function addMessageToChat(message) {
     })
   })
 
-  // cloudStorage.getItem('chat_count', (err, value) => {
-  //   if (value)
-  // })
+  cloudStorage.getItem('chat_count', (err, value) => {
+    console.log('R4', err)
+    console.log('R5', value)
+  })
 
   // Получаем количество сохранённых частей чата
   // const countStr = await cloudStorage.getItem('chat_count')
