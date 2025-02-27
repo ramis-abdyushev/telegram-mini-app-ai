@@ -1,6 +1,6 @@
 import { useMessagesStore } from '@/stores/messages.js'
 
-const maxLengthChunk = 3000
+const maxLengthChunk = 2000
 
 const cloudStorage = window.Telegram.WebApp.CloudStorage
 
