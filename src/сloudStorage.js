@@ -149,9 +149,11 @@ export async function loadChat() {
     }
   }
 
+  fullChat = `[${fullChat}]`
+
   const messagesStore = useMessagesStore()
-  messagesStore.setMessages([JSON.parse(fullChat)])
+  messagesStore.setMessages(JSON.parse(fullChat))
 
   console.log('R3', fullChat)
-  console.log('R4', [JSON.parse(fullChat)])
+  console.log('R4', JSON.parse(fullChat))
 }
