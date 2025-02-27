@@ -1,3 +1,5 @@
+import { useMessagesStore } from '@/stores/messages.js'
+
 const maxLengthChunk = 30
 
 const cloudStorage = window.Telegram.WebApp.CloudStorage
@@ -128,4 +130,28 @@ function splitString(string, firstChunkLength) {
   }
 
   return result
+}
+
+export async function loadChat() {
+  const countStr = await cloudStorage.getItem('chat_count');
+
+  if (!countStr) {
+    return
+  }
+
+  let count = Number(countStr);
+  let fullChat = '';
+
+  for (let i = 0; i < count; i++) {
+    let chunk = await cloudStorage.getItem(`chat_${i}`);
+    if (chunk) {
+      fullChat += chunk;
+    }
+  }
+
+  const messagesStore = useMessagesStore()
+  messagesStore.setMessages([JSON.parse(fullChat)])
+
+  console.log('R3', fullChat)
+  console.log('R4', [JSON.parse(fullChat)])
 }

@@ -1,7 +1,8 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { useMessagesStore } from '@/stores/messages.js'
-import { nextTick, ref, watch } from 'vue'
+import { nextTick, onMounted, ref, watch } from 'vue'
+import { loadChat } from '@/сloudStorage.js'
 
 const messagesStore = useMessagesStore()
 const { messages } = storeToRefs(messagesStore)
@@ -13,6 +14,8 @@ watch(
   () => scrollMessages(),
   { deep: true },
 )
+
+onMounted(() => loadChat())
 
 const scrollMessages = () => {
   nextTick(() => {

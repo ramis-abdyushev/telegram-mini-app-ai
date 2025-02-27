@@ -4,6 +4,10 @@ import { ref } from 'vue'
 export const useMessagesStore = defineStore('messagesStore', () => {
   const messages = ref([])
 
+  const setMessages = (message) => {
+    messages.value = message
+  }
+
   const addMessage = (message) => {
     messages.value.push(message)
   }
@@ -17,5 +21,5 @@ export const useMessagesStore = defineStore('messagesStore', () => {
     }
   }
 
-  return { messages, addMessage, updateLastAssistantMessage }
+  return { messages, setMessages, addMessage, updateLastAssistantMessage }
 })
