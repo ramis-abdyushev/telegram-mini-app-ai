@@ -5,7 +5,7 @@ import SelectModel from '@/components/ModelSelect.vue'
 const cloudStorage = window.Telegram.WebApp.CloudStorage
 
 cloudStorage.setItem('chat', 'Ура')
-cloudStorage.setItem('chat1', [{ asd: 'Ура' }, { sss: 'Да', ff: 123 }])
+cloudStorage.setItem('chat1', JSON.stringify([{ asd: 'Ура' }, { sss: 'Да', ff: 123 }]))
 
 cloudStorage.getKeys((err, keys) => {
   console.log('err', err)
@@ -20,6 +20,7 @@ cloudStorage.getItem('chat', (err, value) => {
 cloudStorage.getItem('chat1', (err, value) => {
   console.log('err2', err)
   console.log('value2', value)
+  console.log('value3', JSON.parse(value))
 })
 </script>
 
