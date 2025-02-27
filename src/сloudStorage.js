@@ -146,7 +146,7 @@ export async function loadChat() {
   let count = Number(countStr);
   let fullChat = '';
 
-  for (let i = 0; i < count; i++) {
+  for (let i = 1; i <= count; i++) {
     let chunk = await getItem(`chat_${i}`);
     if (chunk) {
       fullChat += chunk;
