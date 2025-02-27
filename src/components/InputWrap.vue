@@ -36,7 +36,7 @@ const sendMessage = async () => {
   await new Promise((resolve) => setTimeout(() => resolve(), 1000))
 
   try {
-    await sendMessageOllama();
+    await sendMessageOllama()
 
     // const aiMessage = await new Promise((resolve) => {
     //   messageState.value = 'streaming'
@@ -89,17 +89,17 @@ const stopSendMessage = () => {
         </IconButton>
       </div>
     </div>
-    </div>
+  </div>
 </template>
 
 <style scoped>
 .input-wrap {
-  padding: 0 .75rem 1rem .75rem;
+  padding: 0 0.75rem 1rem 0.75rem;
 }
 
 .input-box {
   margin: auto;
-  padding: .75rem;
+  padding: 0.75rem;
   display: flex;
   align-items: center;
   border-radius: 1.5rem;
@@ -108,12 +108,12 @@ const stopSendMessage = () => {
 }
 
 .input-textarea {
-  margin-left: .25rem;
+  margin-left: 0.25rem;
 }
 
 .input-button {
   align-self: end;
-  margin-left: .75rem;
+  margin-left: 0.75rem;
 }
 
 @media (min-width: 768px) {

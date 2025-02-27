@@ -15,7 +15,7 @@ const emit = defineEmits(['update:value', 'keydown-send'])
 
 const textareaRef = ref(null)
 
-const isMobile = /Mobi|Android|iPhone|iPad|iPod|Windows Phone/i.test(navigator.userAgent);
+const isMobile = /Mobi|Android|iPhone|iPad|iPod|Windows Phone/i.test(navigator.userAgent)
 
 watch(
   () => value,

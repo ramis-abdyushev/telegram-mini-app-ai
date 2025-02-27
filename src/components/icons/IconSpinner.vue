@@ -23,7 +23,7 @@
 svg {
   width: 20px;
   height: 20px;
-  animation: loading .6s linear infinite;
+  animation: loading 0.6s linear infinite;
 }
 
 @keyframes loading {

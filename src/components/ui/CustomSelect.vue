@@ -73,9 +73,9 @@ const clickOutside = (event) => {
 .select-button {
   display: inline-flex;
   align-items: center;
-  padding: .375rem .75rem;
+  padding: 0.375rem 0.75rem;
   border: none;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   font: inherit;
   font-size: 1.125rem;
   background-color: var(--color-background);
@@ -91,13 +91,13 @@ const clickOutside = (event) => {
 .select-button > svg {
   width: 18px;
   height: 18px;
-  margin-left: .25rem;
+  margin-left: 0.25rem;
 }
 
 .select-options {
   position: absolute;
-  margin-top: .5rem;
-  padding: .5rem;
+  margin-top: 0.5rem;
+  padding: 0.5rem;
   border: 1px solid var(--color-border);
   border-radius: 1rem;
   background-color: var(--color-background-soft);
@@ -107,8 +107,8 @@ const clickOutside = (event) => {
 
 .select-option {
   cursor: pointer;
-  padding: .375rem .75rem;
-  border-radius: .375rem;
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.375rem;
 }
 
 .select-option:hover {
