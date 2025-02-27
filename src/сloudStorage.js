@@ -71,7 +71,7 @@ export async function cleanChats() {
 
 export async function addMessageToChat(message) {
   // Строка, которую нужно сохранить
-  const messageStr = JSON.stringify(message) + ','
+  let messageStr = JSON.stringify(message)
 
   let newChat = false
 
@@ -79,6 +79,8 @@ export async function addMessageToChat(message) {
 
   if (!countStr) {
     newChat = true
+  } else {
+    messageStr = ',' + messageStr
   }
 
   let chatCount = newChat ? 1 : Number(countStr)
@@ -134,6 +136,8 @@ function splitString(string, firstChunkLength) {
 
 export async function loadChat() {
   const countStr = await getItem('chat_count');
+
+  console.log('RRR', countStr)
 
   if (!countStr) {
     return
