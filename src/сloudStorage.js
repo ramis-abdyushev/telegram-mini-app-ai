@@ -22,6 +22,8 @@ export async function addMessageToChat(message) {
   console.log('asd', cloudStorage.getItem(`chat_${chatCount}`))
   console.log('zxc', await cloudStorage.getItem(`chat_${chatCount}`))
 
+  console.log('qwe', lastChunkStr)
+
   const availableLength = maxLengthChunk - lastChunkStr.length;
 
   const addedChunks = splitString(messageStr, availableLength)
