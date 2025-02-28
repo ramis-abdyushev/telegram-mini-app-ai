@@ -146,6 +146,8 @@ function splitString(string, firstChunkLength) {
 }
 
 export async function loadChat() {
+  window.Telegram.WebApp.sendData("Ваше сообщение или данные");
+
   const countStr = await getItem('chat_count')
 
   console.log('RRR', countStr)
